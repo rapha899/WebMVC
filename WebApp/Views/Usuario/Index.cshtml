@@ -1,0 +1,77 @@
+﻿@using System.Collections
+@using Clases
+@model IEnumerable<Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<h1>Lista Usuarios</h1>
+<p>Lista de usuraios para solicitud de tarjeta de credito</p>
+<div class="container">
+    <div class="row">
+        <div class= "colcol-sm-6">
+            <h3>Lista Usuarios</h3>
+        </div>
+        <div class="col-sm-6">
+        <a class="btn btn-success d-block" 
+        asp-controller = "Usuario" asp-action="Create"
+        >
+            Crear nuevo Usuario
+        </a>
+        </div>
+    </div>
+    @if (TempData ["mensaje"] != null){
+    <div class="alert alertalert-warning alert-alert-dismissible fade show" role="alert">
+        @TempData["Mensaje"]
+        <button type="button" class="close" data-data-dismiss="alert" ariaaria-label="close">
+            <span ariaaria-hidden="true">
+                &times;
+            </span>
+        </button>
+
+    </div>
+    }
+<div class="row">
+    <table>
+        <thead>
+            <tr>
+              <td>Id</td>
+              <td>Nombre</td>
+              <td>Apellido</td>
+              <td>Edad</td>
+              <td>Email</td>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach(Usuario usuario in Model)
+                {
+                   <tr>
+                   <td>@usuario.Nombre</td> 
+                   <td>@usuario.Apellido</td> 
+                   <td>@usuario.Cedula</td> 
+                   <td>@usuario.Edad</td> 
+                   <td>@usuario.Email </td> 
+                   <td>
+                       <a class="btn btn-warning"
+                       asp-controller="Usuario" asp-action="Edit" asp-route-id="@usuario.Id"
+                       >
+                           
+                           Editar
+                       </a>
+                       <a class="btn btn-danger"
+                       asp-controller="Usuario" asp-action="Delete" asp-route-id="@usuario.Id"
+                       >
+                           Borrar
+                       </a>
+                   </td>
+                   </tr>
+                }     
+        </tbody>
+    </table>
+</div>
+</div>
+
