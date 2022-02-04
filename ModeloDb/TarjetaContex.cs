@@ -9,21 +9,19 @@ namespace ModeloDb
 {
     public class TarjetaContex : DbContext
     {
-      
-        public TarjetaContex(DbContextOptions<TarjetaContex> options) 
-       :base(options)
-       { 
-
-        }
-
        
-        /*
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+         public TarjetaContex(DbContextOptions<TarjetaContex> options) 
+         :base(options)
+         { 
+
+         }
+
+        //Se asegura del borrado y la creacion de la base de datos
+        public void PreparaDB()
         {
-            optionsBuilder.UseSqlServer("Server=MSI\\SQLEXPRESS;Database=EFCore-ProyectoTrajeta;Trusted_Connection=True");
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
-        */
-       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,10 +37,10 @@ namespace ModeloDb
             .WithMany(m => m.Solicitudes)
             .HasForeignKey(c => c.Tarjetaid);
             //deudas solicitud
-            modelBuilder.Entity<Deuda>()
-                .HasOne(c => c.Solicitud)
-                .WithMany(m => m.Deudas)
-                .HasForeignKey(c => c.CurrentSolicitudid);
+            modelBuilder.Entity<Solicitud>()
+                .HasOne(c => c.Deuda)
+                .WithMany(m => m.Solicitudes)
+                .HasForeignKey(c => c.DeudaSolicitudid);
             //1 a 1 Factura Calculo
             modelBuilder.Entity<Calculo>()
                .HasOne(facturas => facturas.Facturas)

@@ -12,7 +12,7 @@ namespace Clases
         public string TipoDeuda { get; set; }
         public float CantidadDeuda { get; set; }
         //Realaciones
-        public int CurrentSolicitudid { get; set; }
-        public Solicitud Solicitud { get; set; }
+        public ICollection<Solicitud> Solicitudes { get; set; }
+
     }
 }

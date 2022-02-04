@@ -7,21 +7,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
-<h1>Lista Usuarios</h1>
-<p>Lista de usuraios para solicitud de tarjeta de credito</p>
 <div class="container">
     <div class="row">
-        <div class= "colcol-sm-6">
-            <h3>Lista Usuarios</h3>
-        </div>
-        <div class="col-sm-6">
-        <a class="btn btn-success d-block" 
-        asp-controller = "Usuario" asp-action="Create"
-        >
-            Crear nuevo Usuario
-        </a>
+        <div class= "colcol-sm-6" >
+            <h3 class="align-content-center">Lista Usuarios</h3>
         </div>
     </div>
     @if (TempData ["mensaje"] != null){
@@ -35,15 +24,15 @@
 
     </div>
     }
-<div class="row">
+<div class="table table-bordered ">
     <table>
         <thead>
             <tr>
-              <td>Id</td>
-              <td>Nombre</td>
-              <td>Apellido</td>
-              <td>Edad</td>
-              <td>Email</td>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Cedula</th>
+              <th>Edad</th>
+              <th>Email</th>
             </tr>
         </thead>
         <tbody>
@@ -55,7 +44,7 @@
                    <td>@usuario.Cedula</td> 
                    <td>@usuario.Edad</td> 
                    <td>@usuario.Email </td> 
-                   <td>
+                   <td class="border">
                        <a class="btn btn-warning"
                        asp-controller="Usuario" asp-action="Edit" asp-route-id="@usuario.Id"
                        >
@@ -72,6 +61,13 @@
                 }     
         </tbody>
     </table>
+    <div class="col-sm-6">
+        <a class="btn btn-success d-block" 
+        asp-controller = "Usuario" asp-action="Create"
+        >
+            Crear nuevo Usuario
+        </a>
+        </div>
 </div>
 </div>
 

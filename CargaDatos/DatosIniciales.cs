@@ -157,6 +157,7 @@ namespace CargaDatos
                 Apellido = "Perez",
                 Cedula = 1750269969,
                 Email = "jr.perez@itq.edu.ec",
+                Edad = 21,
 
             };
             Usuario usuario2 = new Usuario()
@@ -164,7 +165,8 @@ namespace CargaDatos
                 Nombre = "Jaime",
                 Apellido = "Pineda",
                 Cedula = 1750269967,
-                Email = "jaime78@itq.edu.ec"
+                Email = "jaime78@itq.edu.ec",
+                Edad = 45
 
             };
             Usuario usuario3 = new Usuario()
@@ -172,7 +174,9 @@ namespace CargaDatos
                 Nombre = "Juan Martin",
                 Apellido = "Del Potro",
                 Cedula = 1750269968,
-                Email = "juanmartin67@itq.edu.ec"
+                Email = "juanmartin67@itq.edu.ec",
+                Edad = 33
+
 
             };
             Usuario usuario4 = new Usuario()
@@ -181,6 +185,8 @@ namespace CargaDatos
                 Apellido = "Nadal",
                 Cedula = 1750269965,
                 Email = "rafana@itq.edu.ec",
+                Edad = 34
+
 
             };
 
@@ -205,11 +211,14 @@ namespace CargaDatos
             {
                 TipoDeuda = "Bancaria",
                 CantidadDeuda = 300,
+                
+                    
             };
             Deuda deudas1 = new Deuda()
             {
                 TipoDeuda = "Prestamo Coperativa",
                 CantidadDeuda = 2100,
+
             };
             // dedudas lista
             List<Deuda> LstDeudas = new List<Deuda>() { deudas1, deudas };
@@ -219,9 +228,11 @@ namespace CargaDatos
                 FechaSolicitud = new DateTime(2022, 1, 18),
                 Ingresos = 12400,
                 Usuario = usuario,
-                Tarjeta = tarjeta
+                Tarjeta = tarjeta,
+                Deuda = deudas,
+                
             };
-            List<Solicitud> LtsSolicitudes = new List<Solicitud>() {  solicitud};
+            List<Solicitud> LtsSolicitudes = new List<Solicitud>() { solicitud};
 
 
             Dictionary<ListaTipo, object> dictListasDatos = new Dictionary<ListaTipo, object>()

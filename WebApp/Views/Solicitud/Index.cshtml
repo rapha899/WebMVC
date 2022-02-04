@@ -1,6 +1,6 @@
 ﻿@using System.Collections
 @using Clases
-@model IEnumerable<Tarjeta>
+@model IEnumerable<Solicitud>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class= "colcol-sm-6">
-            <h3>Lista Tarjetas</h3>
+            <h3>Lista Solicitudes</h3>
         </div>
     </div>
     @if (TempData ["mensaje"] != null){
@@ -28,23 +28,31 @@
         <thead>
             <tr>
               <td>Id</td>
-              <td>Nombre Tarjeta</td>
+              <td>Ingresos</td>
+              <td>Nombre Empresa</td>
+              <td>TipoEmpresa</td>
+              <td>Nombre usuario</td>
+              <td>Nombre Trajeta</td>
             </tr>
         </thead>
         <tbody>
-                @foreach(Tarjeta tarjeta in Model)
+                @foreach(Solicitud solicitud in Model)
                 {
                    <tr>
-                   <td>@tarjeta.NombreTarjeta</td> 
+                    <td>@solicitud.id</td> 
+                   <td>@solicitud.Ingresos</td> 
+                   <td>@solicitud.NombreEmpresa </td> 
+                   <td>@solicitud.Usuario.Nombre</td> 
+                   <td>@solicitud.Tarjeta.NombreTarjeta</td>
                    <td>
                        <a class="btn btn-warning"
-                       asp-controller="TarjetaController1" asp-action="Edit" asp-route-id="@tarjeta.Id"
+                       asp-controller="SolicitudController" asp-action="Edit" asp-route-id="@solicitud.id"
                        >
                            
                            Editar
                        </a>
                        <a class="btn btn-danger"
-                       asp-controller="TarjetaController1" asp-action="Delete" asp-route-id="@tarjeta.Id"
+                       asp-controller="SolicitudController" asp-action="Delete" asp-route-id="@solicitud.id"
                        >
                            Borrar
                        </a>

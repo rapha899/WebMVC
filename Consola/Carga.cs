@@ -1,11 +1,7 @@
 ﻿using CargaDatos;
 using Clases;
 using ModeloDb;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static CargaDatos.DatosIniciales;
 
 namespace Consola
@@ -21,14 +17,22 @@ namespace Consola
             var listaUsuarios = (List<Usuario>)listas[ListaTipo.Usuario];
             var listaTarjetas = (List<Tarjeta>)listas[ListaTipo.Tarjeta];
             var listaSolicitudes = (List<Solicitud>)listas[ListaTipo.Solicitud];
-            //  var listaDeudas = (List<Deuda>)listas[ListaTipo.Deuda];
+            var listaDeudas = (List<Deuda>)listas[ListaTipo.Deuda];
             //Grabar
-            TarjetaContex db = new TarjetaContex();
-            db.Usuarios.AddRange(listaUsuarios);
-            db.Tarjetas.AddRange(listaTarjetas);
-            db.Solicitudes.AddRange(listaSolicitudes);
-            // db.Deudas.AddRange(listaDeudas);
-            db.SaveChanges();
+
+
+            using (TarjetaContex db = TarjetaDbBuilder.Crear())
+             { 
+                // Se asegura que se borre y vuelva a crear la base de datos
+                db.PreparaDB();
+                // Agrega los listados
+                db.Usuarios.AddRange(listaUsuarios);
+                db.Tarjetas.AddRange(listaTarjetas);
+                db.Solicitudes.AddRange(listaSolicitudes);
+                db.Deudas.AddRange(listaDeudas);
+                // Guarda todos los datos
+                db.SaveChanges();
+            }
         }
     }
 }

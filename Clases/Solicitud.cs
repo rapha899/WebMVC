@@ -20,6 +20,7 @@ namespace Clases
         public int Tarjetaid { get; set; }
         public Tarjeta Tarjeta { get; set;}
         //deuda
-        public ICollection<Deuda> Deudas { get; set; }
+        public int DeudaSolicitudid { get; set; }
+        public Deuda Deuda { get; set; }
     }
 }
