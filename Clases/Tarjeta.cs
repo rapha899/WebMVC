@@ -10,6 +10,8 @@ namespace Clases
     {
         public int Id { get; set; }
         public string NombreTarjeta { get; set; }
+
+        public float valorAprobacion { get; set; }
         //relacion solicitudes
         public List<Solicitud> Solicitudes { get; set; }
     }

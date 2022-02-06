@@ -196,14 +196,19 @@ namespace CargaDatos
             Tarjeta tarjeta = new Tarjeta()
             {
                 NombreTarjeta = "Visa Normal",
+                valorAprobacion = 700.00f
             };
             Tarjeta tarjeta1 = new Tarjeta()
             {
-                NombreTarjeta = "Visa Platinum"
+                NombreTarjeta = "Visa Platinum",
+                valorAprobacion = 2500.00f
+
             };
             Tarjeta tarjeta3 = new Tarjeta()
             {
-                NombreTarjeta = "Visa Signature"
+                NombreTarjeta = "Visa Signature",
+                valorAprobacion = 5000.00f
+
             };
             //Lista de Tarjetas
             List<Tarjeta> LstTarjetas = new List<Tarjeta>() { tarjeta, tarjeta1, tarjeta3 };
@@ -220,8 +225,15 @@ namespace CargaDatos
                 CantidadDeuda = 2100,
 
             };
+            Deuda deudasUsuario2 = new Deuda()
+            {
+                TipoDeuda = "Prestamo Coperativa",
+                CantidadDeuda = 700,
+
+            };
+
             // dedudas lista
-            List<Deuda> LstDeudas = new List<Deuda>() { deudas1, deudas };
+            List<Deuda> LstDeudas = new List<Deuda>() { deudas1, deudas , deudasUsuario2};
             Solicitud solicitud = new Solicitud()
             {
                 NombreEmpresa = "SA",
@@ -230,9 +242,22 @@ namespace CargaDatos
                 Usuario = usuario,
                 Tarjeta = tarjeta,
                 Deuda = deudas,
+                SolicitudEstado = SolicitudEstado.Aprobada
                 
             };
-            List<Solicitud> LtsSolicitudes = new List<Solicitud>() { solicitud};
+            //Usuario 2
+            Solicitud solicitud2 = new Solicitud()
+            {
+                NombreEmpresa = "Leiones de muneca",
+                FechaSolicitud = new DateTime(2022,2,4),
+                Ingresos = 800,
+                Usuario = usuario3,
+                Tarjeta = tarjeta1,
+                Deuda = deudasUsuario2,
+                SolicitudEstado = SolicitudEstado.Rechazada
+
+            };
+            List<Solicitud> LtsSolicitudes = new List<Solicitud>() { solicitud , solicitud2};
 
 
             Dictionary<ListaTipo, object> dictListasDatos = new Dictionary<ListaTipo, object>()

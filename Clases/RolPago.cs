@@ -10,8 +10,10 @@ namespace Clases
     {
         public int id { get; set; }
         public int rolPago { get; set; }
+        public string nombreEmpresa { get; set; }
         public float monto { get; set; }
         public DateTime FechaRol { get; set; }
+        //
 
         //Relaciones 
         public int CurrentSolicitudid { get; set; }
@@ -19,6 +21,6 @@ namespace Clases
         //pre
         public ICollection<Prerequisito> Prerequsitos { get; set; }
 
-
+       
     }
 }

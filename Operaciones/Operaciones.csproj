@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CargaDatos\CargaDatos.csproj" />
+    <ProjectReference Include="..\Clases\Clases.csproj" />
+    <ProjectReference Include="..\ModeloDb\ModeloDb.csproj" />
+  </ItemGroup>
+
+</Project>

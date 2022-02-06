@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Clases
 {
+    public enum SolicitudEstado { Pendiente, Aprobada, Rechazada, Anulada }
+
     public class Solicitud
     {
         public int id { get; set; }
@@ -13,6 +15,8 @@ namespace Clases
         public string NombreEmpresa { get; set; }
         public string TipoEmpresa { get; set; }
         public DateTime FechaSolicitud { get; set; }
+
+        public SolicitudEstado SolicitudEstado { get; set; }
         //usurio
         public int Usuarioid { get; set; }
         public Usuario Usuario { get; set; }
