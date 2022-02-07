@@ -17,32 +17,36 @@ namespace Operaciones
         {
             this.db = db;
         }
-
-        public bool ApruebaSolicitud(Usuario usuario)
+        // aprueba una solicitud segun el usuario 
+        public bool ApruebaSolicitudUsuario(Usuario usuario)
         {
-            //   ValidacionSolicitudTarjeta usuario , solicitud
-            var tmpSolicitud = db.Usuarios
+            // Validacion usuario , solicitud
+            var tmpUsuario = db.Usuarios
                   .Include(soli => soli.Solicitudes)
                   .ThenInclude(tarjeta => tarjeta.Tarjeta)
                   .Include(soli => soli.Solicitudes)
                   .ThenInclude(deuda => deuda.Deuda)
-                  .Include(soli => soli.Solicitudes)
-                  .First(user => user.Id == usuario.Id);
+                  .Single(user => user.Id == usuario.Id);
             //Cauculo deuda
+            //LLama a nuestra lista de solicitudes y muestra los datos a consultar 
             var conSoli = db.Solicitudes.First();
-            var cal = new OpCapacidadEndeudamiento(conSoli);
-
-            //Busco solicitud
-            foreach (var solicitud1 in tmpSolicitud.Solicitudes)
+            var opC = new OpCapacidadEndeudamiento(db);
+            opC.CalculoPorcentaje(conSoli);
+            //Busco solicitud mediante un foreach
+            foreach (var solicitud1 in tmpUsuario.Solicitudes)
             {
-               if (solicitud1.Usuario.Id == usuario.Id)
-               if(solicitud1.Deuda == null) return false;
-                if (cal.Aprobado(solicitud1)) {
+               // si el usuario es igual al id 
+                if (solicitud1.Usuario.Id == usuario.Id)
+               // compara la edad del usario con los requisitos de la edad requerida para obtenr la tarjeta 
+                if (solicitud1.Usuario.Edad < solicitud1.Tarjeta.Edad) return false; 
+                //Comprueba que cumpla con el timpo de trabajo rquerido 
+                
+                //Aprueba la solicitud si su capacidad de endeudamiento el igual o superior a los ingresos del usauairo
+                if (opC.Aprobado(solicitud1)) {
                     return true;
                 }
-
+                
             }
-           
             return false;
            
 

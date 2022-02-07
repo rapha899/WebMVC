@@ -11,18 +11,20 @@ namespace Operaciones
 {
     public class OpCapacidadEndeudamiento
     {
+        // llamada al db contex
         public TarjetaContex db { get; set; }
-
+        //retorno del db contex
         public OpCapacidadEndeudamiento(TarjetaContex db)
         {
             this.db = db;
         }
         float deuda, ingresos, porcentajeFijo;
 
-        public OpCapacidadEndeudamiento(Solicitud solicitud) {
+        // constructor calculo capacidad endeudamiento
+        public void CalculoPorcentaje(Solicitud solicitud) {
            
             var tmpSolicitud = db.Solicitudes
-                    .Include(soli => soli.Ingresos)
+                  //  .Include(soli => soli.Ingresos)
                     .Include(soli => soli.Deuda)
                     .Include(soli => soli.Tarjeta)
                     .Single(soli => soli.id == solicitud.id);
@@ -35,7 +37,8 @@ namespace Operaciones
             suma = MathF.Round(suma, 2);
 
         }
-        //calcula capacidad endeudamiento
+
+        //Se encarga de comparar la capacidaded de endeudamiento con el prerequisitos de la tarjeta 
         public float Endeudamiento(Solicitud solicitud) {
             float suma;
             float porcentajeFijo = 0.30f;
@@ -44,7 +47,7 @@ namespace Operaciones
             suma = MathF.Round(suma, 2);
             return suma;
            }
-        // aprueba credito segun capacidas endeudamiento
+        // aprueba credito segun el calculo final  entre la capacidad de endeudamiento y el prerequisitos 
         public bool Aprobado(Solicitud solicitud)
         {
             if (Endeudamiento(solicitud) < solicitud.Tarjeta.valorAprobacion) { 

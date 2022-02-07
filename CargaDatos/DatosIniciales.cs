@@ -194,7 +194,7 @@ namespace CargaDatos
                 FechaSolicitud = new DateTime(2022, 1, 18),
                 Ingresos = 12400,
                 Usuario = usuario,
-                Tarjeta = tarjeta,
+                Tarjeta = tarjeta1,
                 Deuda = deudas,
                 SolicitudEstado = SolicitudEstado.Aprobada
                 

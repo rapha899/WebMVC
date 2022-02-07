@@ -11,7 +11,7 @@ namespace Consola
             Carga grabar = new Carga();
             grabar.DatosIni();
 
-            using (var db = TarjetaDbBuilder.Crear())
+           using (var db = TarjetaDbBuilder.Crear())
             {
                 var listaSolicitudes = db.Solicitudes
                     .Include(solicitudes => solicitudes.Usuario)
@@ -24,12 +24,12 @@ namespace Consola
                 foreach (var solicitud in listaSolicitudes)
                 {
                     Console.WriteLine(
-                        solicitud.Usuario.Nombre + " "+
-                        solicitud.Tarjeta.NombreTarjeta + " "+
-                        solicitud.NombreEmpresa + " "+
+                        solicitud.Usuario.Nombre + " " +
+                        solicitud.Tarjeta.NombreTarjeta + " " +
+                        solicitud.NombreEmpresa + " " +
                         solicitud.Ingresos + " " +
-                      //  solicitud.Usuario.Edad+""+
-                        solicitud.Deuda.CantidadDeuda +""
+                        //  solicitud.Usuario.Edad+""+
+                        solicitud.Deuda.CantidadDeuda + ""
                     );
                     //capacidad endeudamiento
                     OpCapacidadEndeudamiento opCapacidadEndeudamiento = new OpCapacidadEndeudamiento(db);
@@ -39,16 +39,22 @@ namespace Consola
                     Console.WriteLine(opCapacidadEndeudamiento.Endeudamiento(solicitud));
                     Console.WriteLine(opCapacidadEndeudamiento.Aprobado(solicitud));
                     //var solicitudesw = validacion.ApruebaSolicitud(solicitud ,solicitud.Usuario);
-                   
+                    
                 }
             }
+           
+            using (var db = TarjetaDbBuilder.Crear())
+            {
 
-            
-         
-            
-                 
-}
-}
-}
+                var tmpusUsuario = db.Usuarios
+                    .Single(u => u.Id == 1);
 
+                ValidacionSolicitudTarjeta vali = new ValidacionSolicitudTarjeta(db);
+                vali.ApruebaSolicitudUsuario(tmpusUsuario);
+
+                Console.WriteLine(vali.ApruebaSolicitudUsuario(tmpusUsuario) + "Nombre:" + tmpusUsuario.Nombre);
+            }
+        }
+    }
+}
 
