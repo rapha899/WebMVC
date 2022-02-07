@@ -18,8 +18,6 @@ namespace Clases
         //Relaciones 
         public int CurrentSolicitudid { get; set; }
         public Solicitud Solicitud { get; set; }
-        //pre
-        public ICollection<Prerequisito> Prerequsitos { get; set; }
 
        
     }

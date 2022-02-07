@@ -35,6 +35,7 @@ namespace Operaciones
             suma = MathF.Round(suma, 2);
 
         }
+        //calcula capacidad endeudamiento
         public float Endeudamiento(Solicitud solicitud) {
             float suma;
             float porcentajeFijo = 0.30f;
@@ -43,7 +44,7 @@ namespace Operaciones
             suma = MathF.Round(suma, 2);
             return suma;
            }
-
+        // aprueba credito segun capacidas endeudamiento
         public bool Aprobado(Solicitud solicitud)
         {
             if (Endeudamiento(solicitud) < solicitud.Tarjeta.valorAprobacion) { 

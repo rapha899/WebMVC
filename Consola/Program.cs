@@ -39,22 +39,16 @@ namespace Consola
                     Console.WriteLine(opCapacidadEndeudamiento.Endeudamiento(solicitud));
                     Console.WriteLine(opCapacidadEndeudamiento.Aprobado(solicitud));
                     //var solicitudesw = validacion.ApruebaSolicitud(solicitud ,solicitud.Usuario);
-
+                   
                 }
             }
 
-            using (var db = TarjetaDbBuilder.Crear())
-            {
-                var listaSolicitudes = db.Solicitudes
-                    .Include(solicitudes => solicitudes.Usuario)
-                    .Include(solicitudes => solicitudes.Deuda)
-                    .Include(solicitudes => solicitudes.Tarjeta)
-                    .Include(solicitudes => solicitudes.Deuda)
-                    ;
-
+            
+         
+            
                  
-                }
-            }
-        }
-    }
+}
+}
+}
+
 

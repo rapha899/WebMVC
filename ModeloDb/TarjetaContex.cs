@@ -50,31 +50,19 @@ namespace ModeloDb
 
             //muchos a muchos 
             modelBuilder.Entity<Prerequisito>()
-                .HasKey(p => new { p.RolPagoId, p.FacturaId, p.RolPagoPublicaId, p.UsuarioId });
+                .HasKey(p => new { p.TarjetaId, p.UsuarioId });
 
             modelBuilder.Entity<Prerequisito>()
-            .HasOne(pre => pre.Factura)
-            .WithMany(factura => factura.Prerequsitos)
+            .HasOne(pre => pre.Tarjeta)
+            .WithMany(tarjeta => tarjeta.Prerequsitos)
             .OnDelete(DeleteBehavior.NoAction)
-            .HasForeignKey(pre => pre.FacturaId);
+            .HasForeignKey(pre => pre.TarjetaId);
 
             modelBuilder.Entity<Prerequisito>()
           .HasOne(pre => pre.Usuario)
           .WithMany(usuario => usuario.Prerequsitos)
           .OnDelete(DeleteBehavior.NoAction)
           .HasForeignKey(pre => pre.UsuarioId);
-
-            modelBuilder.Entity<Prerequisito>()
-            .HasOne(pre => pre.RolPagosPublica)
-            .WithMany(rlp => rlp.Prerequsitos)
-            .OnDelete(DeleteBehavior.NoAction)
-            .HasForeignKey(pre => pre.RolPagoPublicaId);
-
-            modelBuilder.Entity<Prerequisito>()
-          .HasOne(pre => pre.RolPago)
-          .WithMany(rol => rol.Prerequsitos)
-          .OnDelete(DeleteBehavior.NoAction)
-          .HasForeignKey(pre => pre.RolPagoId);
         }
         //Declaracion de clases 
         public DbSet<Usuario> Usuarios { get; set; }

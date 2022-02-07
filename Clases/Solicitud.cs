@@ -26,5 +26,7 @@ namespace Clases
         //deuda
         public int DeudaSolicitudid { get; set; }
         public Deuda Deuda { get; set; }
+        //muchos a muchos
+
     }
 }
