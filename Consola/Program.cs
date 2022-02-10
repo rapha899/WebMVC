@@ -11,7 +11,7 @@ namespace Consola
             Carga grabar = new Carga();
             grabar.DatosIni();
 
-           using (var db = TarjetaDbBuilder.Crear())
+            using (var db = TarjetaDbBuilder.Crear())
             {
                 var listaSolicitudes = db.Solicitudes
                     .Include(solicitudes => solicitudes.Usuario)
@@ -39,11 +39,11 @@ namespace Consola
                     Console.WriteLine(opCapacidadEndeudamiento.Endeudamiento(solicitud));
                     Console.WriteLine(opCapacidadEndeudamiento.Aprobado(solicitud));
                     //var solicitudesw = validacion.ApruebaSolicitud(solicitud ,solicitud.Usuario);
-                    
+
                 }
             }
 
-            using (var db = TarjetaDbBuilder.Crear())
+           /* using (var db = TarjetaDbBuilder.Crear())
             {
 
 
@@ -53,10 +53,35 @@ namespace Consola
                 vali.ApruebaSolicitudUsuario(tmpusUsuario);
                 Console.WriteLine(vali.ApruebaSolicitudUsuario(tmpusUsuario) + "Nombre:" + tmpusUsuario.Nombre);
             }
-            
+           */
+            using (var db = TarjetaDbBuilder.Crear())
+            {
+                var tmpSoli = db.Solicitudes
+                    .Where(s =>
+                    s.id == 1 ||                       // NO
+                    s.id == 2 ||           // SI
+                    s.id == 3 ||                       // NO
+                    s.id == 5
 
-        }
+                );
+                var tmpUsu = db.Usuarios
+                  .Single(u => u.Nombre == "Raphael");
+                ApruebaSoli sol = new ApruebaSoli(db);
+
+                foreach (var s in tmpSoli)
+                {
+                    var resultado = sol.Aprobo(tmpUsu , s);
+
+                    Console.WriteLine(
+                        "El usuario " + tmpUsu.Nombre +
+                        (resultado ? " SI " : " NO ") +
+                        " aprobó la materia de: " + ""
+                    );
+                }
+
+
+            }
         }
     }
 
-
+}

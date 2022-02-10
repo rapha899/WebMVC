@@ -19,16 +19,13 @@ namespace Operaciones
         }
         public bool Aprobo(Usuario usuario, Solicitud solicitud) {
             var tmpUsuario = db.Usuarios
-                    .Include(soli => soli.Solicitudes)
-                    .ThenInclude(det => det.SolicitudDets)
-                    .ThenInclude(deuda => deuda.Deuda)
-                    .Include(soli => soli.Solicitudes)
-                    .ThenInclude(det => det.SolicitudDets)
-                    .ThenInclude(t => t.Tarjeta)
-                    .Include(solidets => solidets.SolicitudDets)
-                    .Single(user => user.Id == usuario.Id);
+                  .Include(soli => soli.Solicitudes)
+                  .ThenInclude(r => r.Registro)
+       
+                  .Include(solidets => solidets.SolicitudDets)
+                  .ThenInclude(p => p.PorcentajeEndeudamiento)
+                  .Single(u => u.Id == usuario.Id);
             // si no tiene solicitudes
-            if (tmpUsuario == null)  return false;
             //Preparar Clase por
             var config = db.Configuracions.Single();
             var calc = new PorPor(config);

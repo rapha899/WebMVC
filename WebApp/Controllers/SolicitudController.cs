@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Clases;
-using Microsoft.AspNetCore.Mvc;
 using ModeloDb;
 using System.Collections;
 using System.Collections.Generic;
@@ -93,6 +92,7 @@ namespace WebApp.Controllers
                  .Include(d => d.Deuda)
                  .Include(det => det.SolicitudDets)
                  .ThenInclude(p => p.PorcentajeEndeudamiento)
+                 .Include(c => c.Registro)
                  .Single(m => m.id == id);
             //preparo clase clacular 
             var confif = db.Configuracions.Single();
