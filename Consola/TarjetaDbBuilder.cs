@@ -32,6 +32,16 @@ namespace Consola
                         .UseNpgsql(conn)
                         .Options;
                     break;
+                case "MySQL":
+                    contextOptions = new DbContextOptionsBuilder<TarjetaContex>()
+
+                    // Replace with your server version and type.
+                    // Use 'MariaDbServerVersion' for MariaDB.
+                    // Alternatively, use 'ServerVersion.AutoDetect(connectionString)'.
+                    // For common usages, see pull request #1233.
+                    .UseMySql(conn, ServerVersion.AutoDetect(conn))
+                    .Options;
+                    break;
                 default: // Por defecto usa la memoria como base de datos
                     contextOptions = new DbContextOptionsBuilder<TarjetaContex>()
                         .UseInMemoryDatabase(conn)

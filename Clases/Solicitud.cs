@@ -11,10 +11,13 @@ namespace Clases
     public class Solicitud
     {
         public int id { get; set; }
-        public int Ingresos { get; set; }
+        public float Ingresos { get; set; }
         public string NombreEmpresa { get; set; }
         public string TipoEmpresa { get; set; }
         public DateTime FechaSolicitud { get; set; }
+        public int YearsTranajoPrivado { get; set; }
+        public int YearsTrabajoPublica { get; set; }
+        public int YearsFactura { get; set; }
 
         public SolicitudEstado SolicitudEstado { get; set; }
         //usurio
@@ -22,11 +25,15 @@ namespace Clases
         public Usuario Usuario { get; set; }
         //tarjeta
         public int Tarjetaid { get; set; }
-        public Tarjeta Tarjeta { get; set;}
+        public Tarjeta Tarjeta { get; set; }
         //deuda
         public int DeudaSolicitudid { get; set; }
         public Deuda Deuda { get; set; }
-        //muchos a muchos
+        //aolidet
+        public List<solicitudDet> SolicitudDets { get; set; }
+        //Relacion registro 
+        public int regisId { get; set; }    
+        public Registro Registro { get; set; }
 
     }
 }

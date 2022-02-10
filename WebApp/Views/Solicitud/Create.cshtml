@@ -1,0 +1,112 @@
+﻿@using System.Collections
+@using Clases
+
+@model Solicitud
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Matrícula</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <form method="post" asp-action="Validar">
+                <div class="form-group">
+                    <label class="control-label">Solicitud Id</label>
+                    <input class="form-control" asp-for="id" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Tarjeta</label>
+                    <input class="form-control" asp-for="Tarjeta.NombreTarjeta" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Usuario</label>
+                    <input class="form-control" asp-for="Usuario.Nombre" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Deuda</label>
+                    <input class="form-control" asp-for="Deuda.CantidadDeuda" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Ingresos</label>
+                    <input class="form-control" asp-for="Ingresos" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Estado</label>
+                    <input class="form-control" asp-for="SolicitudEstado" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Privada </label>
+                    <input class="form-control" asp-for="YearsTrabajoPublica" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Factura </label>
+                    <input class="form-control" asp-for="YearsFactura" />
+                </div>
+                  <div class="form-group">
+                    <label class="control-label">Years Trabajo Publica </label>
+                    <input class="form-control" asp-for="YearsTrabajoPublica" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Validar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-8">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr> 
+                            <td>ID</td>
+                            <td>TARJETA</td>
+                            <td>USUARIO</td>
+                            <td>DEUDA</td>
+                            <td>INGRESO</td>
+                            <td>PRIVADA</td>
+                            <td>PUBLICA</td>
+                            <td>FACTURA</td>
+                            <td>Estado</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.SolicitudDets)
+                        {
+                            <tr>
+                                <td>@item.Deuda.CantidadDeuda</td>
+                                <d>@item.Solicitud.Ingresos</d>
+                                <td>@item.Solicitud.YearsFactura</td>
+                                <td>@item.Solicitud.YearsTrabajoPublica</td>
+                                <td>@item.Solicitud.YearsFactura</td>
+                                <td>@item.usuario</td>
+
+                            @if (item.PorcentajeEndeudamiento != null) 
+                            {
+                                <td>@item.Deuda.CantidadDeuda</td>
+                                <td>@item.Solicitud.Ingresos</td>
+                                <td>@item.Solicitud.YearsFactura</td>
+                                <td>@item.Solicitud.YearsTrabajoPublica</td>
+                                <td>@item.Solicitud.YearsTranajoPrivado</td>
+                                <td>@ViewBag.Vali.Aprobado(item)</td>
+                            }
+                            else
+                            {
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            }
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        </div>
+    </div>
+
+
+
+</div>
+

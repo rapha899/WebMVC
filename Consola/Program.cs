@@ -42,19 +42,21 @@ namespace Consola
                     
                 }
             }
-           
+
             using (var db = TarjetaDbBuilder.Crear())
             {
 
+
                 var tmpusUsuario = db.Usuarios
                     .Single(u => u.Id == 1);
-
                 ValidacionSolicitudTarjeta vali = new ValidacionSolicitudTarjeta(db);
                 vali.ApruebaSolicitudUsuario(tmpusUsuario);
-
                 Console.WriteLine(vali.ApruebaSolicitudUsuario(tmpusUsuario) + "Nombre:" + tmpusUsuario.Nombre);
             }
+            
+
+        }
         }
     }
-}
+
 

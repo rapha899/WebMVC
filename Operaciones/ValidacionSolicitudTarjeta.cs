@@ -20,35 +20,36 @@ namespace Operaciones
         // aprueba una solicitud segun el usuario 
         public bool ApruebaSolicitudUsuario(Usuario usuario)
         {
+
             // Validacion usuario , solicitud
             var tmpUsuario = db.Usuarios
                   .Include(soli => soli.Solicitudes)
-                  .ThenInclude(tarjeta => tarjeta.Tarjeta)
-                  .Include(soli => soli.Solicitudes)
+                  .ThenInclude(det => det.SolicitudDets)
                   .ThenInclude(deuda => deuda.Deuda)
+                  .Include(soli => soli.Solicitudes)
+                  .ThenInclude(det => det.SolicitudDets)
+                  .ThenInclude(t => t.Tarjeta)
+                  .Include(solidets => solidets.SolicitudDets)
+                  
                   .Single(user => user.Id == usuario.Id);
-            //Cauculo deuda
+            //Si no tiene solicitudes no se puede validar
+            if (tmpUsuario.Solicitudes == null) return false;
             //LLama a nuestra lista de solicitudes y muestra los datos a consultar 
             var conSoli = db.Solicitudes.First();
             var opC = new OpCapacidadEndeudamiento(db);
-            opC.CalculoPorcentaje(conSoli);
+            opC.Endeudamiento(conSoli);
             //Busco solicitud mediante un foreach
             foreach (var solicitud1 in tmpUsuario.Solicitudes)
             {
-               // si el usuario es igual al id 
-                if (solicitud1.Usuario.Id == usuario.Id)
-               // compara la edad del usario con los requisitos de la edad requerida para obtenr la tarjeta 
-                if (solicitud1.Usuario.Edad < solicitud1.Tarjeta.Edad) return false; 
-                //Comprueba que cumpla con el timpo de trabajo rquerido 
-                
-                //Aprueba la solicitud si su capacidad de endeudamiento el igual o superior a los ingresos del usauairo
-                if (opC.Aprobado(solicitud1)) {
-                    return true;
+                foreach (var det in solicitud1.SolicitudDets)
+                {
+                    if (opC.Aprobado(det.Solicitud))
+                    {
+                        return true;
+                    }
                 }
-                
             }
             return false;
-           
 
         }
     }

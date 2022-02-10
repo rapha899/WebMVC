@@ -5,6 +5,8 @@ using ModeloDb;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Operaciones;
+using System.Linq;
 
 namespace WebApp.Controllers
 {
@@ -29,17 +31,13 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+
             return View();
         }
         [HttpPost]
         public IActionResult Create(Solicitud solicitud)
         {
-            db.Solicitudes.Add(solicitud);
-            db.SaveChanges();
-            TempData["mensaje"] = $"La Solicitud del usuario {solicitud.Usuario} a sido creado creado exitosamente";
-
-
-            return RedirectToAction("Index");
+            return View();
         }
 
         //edition solicitud
@@ -76,6 +74,32 @@ namespace WebApp.Controllers
             db.SaveChanges();
             TempData["mensaje"] = $"La solicitud {solicitud.id} a sido creado borrado exitosamente";
             return RedirectToAction("Index");
+
+        }
+        [HttpGet]
+        public IActionResult Validar()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Validar(int id)
+        {
+            var soli = db.Solicitudes
+                 .Include(u => u.Usuario)
+                 .Include(t => t.Tarjeta)
+                 .Include(d => d.Deuda)
+                 .Include(det => det.SolicitudDets)
+                 .ThenInclude(p => p.PorcentajeEndeudamiento)
+                 .Single(m => m.id == id);
+            //preparo clase clacular 
+            var confif = db.Configuracions.Single();
+            PorPor porcetaje = new PorPor(confif);
+            ViewBag.Vali = porcetaje;
+
+            return View(soli);
 
         }
     }

@@ -16,9 +16,11 @@ namespace Clases
         //
 
         //Relaciones 
-        public int CurrentSolicitudid { get; set; }
-        public Solicitud Solicitud { get; set; }
+        public List<Solicitud> Solicitudes { get; set; }
 
-       
+
+
     }
+
+
 }

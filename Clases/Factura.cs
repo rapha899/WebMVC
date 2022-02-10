@@ -10,15 +10,16 @@ namespace Clases
     {
         public int id { get; set; }
         public int factura { get; set; }
+
+        public float monto { get; set; }
         public DateTime FechaFactura { get; set; }
+        //
+        public List<Solicitud> Solicitudes { get; set; }
 
         //Relaciones 
         public int CurrentSolicitudid { get; set; }
         public Solicitud Solicitud { get; set; }
         //Relacion 1 a 1 
-        public int Calculos_Id { get; set; }
-        public Calculo Calculos { get; set; }
-        //pre
         public ICollection<Prerequisito> Prerequsitos { get; set; }
     }
 }

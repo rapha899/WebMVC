@@ -16,6 +16,17 @@
   <ItemGroup>
     <ProjectReference Include="..\Clases\Clases.csproj" />
     <ProjectReference Include="..\ModeloDb\ModeloDb.csproj" />
+    <ProjectReference Include="..\Operaciones\Operaciones.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\black.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

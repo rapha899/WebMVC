@@ -18,6 +18,9 @@ namespace Clases
         public float valorAprobacion { get; set; }
         //relacion solicitudes
         public List<Solicitud> Solicitudes { get; set; }
+
+        public List<solicitudDet> SolicitudDets { get; set; }
+
         //Relacion muchos a muchos
         public ICollection<Prerequisito> Prerequsitos { get; set; }
 

@@ -52,10 +52,13 @@
                            Editar
                        </a>
                        <a class="btn btn-danger"
-                       asp-controller="SolicitudController" asp-action="Delete" asp-route-id="@solicitud.id"
+                       asp-controller="Solicitud" asp-action="Delete" asp-route-id="@solicitud.id"
                        >
                            Borrar
                        </a>
+                       
+                        <a asp-controller="Solicitud" asp-action="Validar" asp-route-id="@solicitud.id" class="btn btn-warning">Ver</a>
+                    
                    </td>
                    </tr>
                 }     
@@ -63,9 +66,9 @@
     </table>
       <div class="col-sm-6">
         <a class="btn btn-success d-block" 
-        asp-controller = "TarjetaController1" asp-action="Create"
+        asp-controller = "Solicitud" asp-action="Create"
         >
-            Crear nueva Tarjeta
+            Crear nueva Solicitud
         </a>
         </div>
 </div>

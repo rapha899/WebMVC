@@ -13,6 +13,9 @@ namespace Clases
         public float CantidadDeuda { get; set; }
         //Realaciones
         public ICollection<Solicitud> Solicitudes { get; set; }
+        // soli det 
+
+        public List<solicitudDet> SolicitudDets { get; set; }
 
     }
 }

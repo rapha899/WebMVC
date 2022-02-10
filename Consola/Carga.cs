@@ -18,6 +18,10 @@ namespace Consola
             var listaTarjetas = (List<Tarjeta>)listas[ListaTipo.Tarjeta];
             var listaSolicitudes = (List<Solicitud>)listas[ListaTipo.Solicitud];
             var listaDeudas = (List<Deuda>)listas[ListaTipo.Deuda];
+            var listaconf = (List<Configuracion>)listas[ListaTipo.Configuracion];
+            var listaRegistros = (List<Registro>)listas[ListaTipo.Registro];
+
+
             //Grabar
 
 
@@ -30,6 +34,8 @@ namespace Consola
                 db.Tarjetas.AddRange(listaTarjetas);
                 db.Solicitudes.AddRange(listaSolicitudes);
                 db.Deudas.AddRange(listaDeudas);
+                db.Registros.AddRange(listaRegistros);
+                db.Configuracions.AddRange(listaconf);
                 // Guarda todos los datos
                 db.SaveChanges();
             }

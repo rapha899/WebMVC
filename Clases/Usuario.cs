@@ -16,7 +16,9 @@ namespace Clases
         public string Email { get; set; }
         //relacion solicitudes
         public List<Solicitud> Solicitudes { get; set; }
-        //deudas
+        //
+        public List<solicitudDet> SolicitudDets { get; set; }
+
         //pre
         public ICollection<Prerequisito> Prerequsitos { get; set; }
 
